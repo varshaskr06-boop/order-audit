@@ -1,0 +1,36 @@
+{
+  "name": "sri-meenakshi-agro-erp",
+  "version": "15.0.0",
+  "description": "Sri Meenakshi Agro & Traditional Foods Pvt Ltd - Order-to-Audit Management System (Phases 1-15 Complete)",
+  "private": true,
+  "scripts": {
+    "start": "node backend/server.js",
+    "start:backend": "node backend/server.js",
+    "dev:backend": "node --watch backend/server.js",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "build:frontend": "npm --prefix frontend run build",
+    "build": "npm --prefix frontend run build",
+    "test:e2e": "node backend/test-e2e-workflow.js",
+    "test:analytics": "node backend/test-analytics.js",
+    "test:audit": "node backend/test-audit.js",
+    "test:payments": "node backend/test-payments.js",
+    "test:dispatch": "node backend/test-dispatch.js",
+    "test:invoicing": "node backend/test-invoicing.js",
+    "test:costing": "node backend/test-costing.js",
+    "test:quality": "node backend/test-quality.js",
+    "test:all": "node backend/test-e2e-workflow.js && node backend/test-analytics.js && node backend/test-audit.js && node backend/test-payments.js && node backend/test-dispatch.js && node backend/test-invoicing.js && node backend/test-costing.js && node backend/test-quality.js",
+    "backup": "node database/scripts/backup.js",
+    "restore": "node database/scripts/restore.js"
+  },
+  "keywords": [
+    "erp",
+    "food-manufacturing",
+    "gst-invoicing",
+    "inventory",
+    "traceability",
+    "audit-management",
+    "order-to-audit"
+  ],
+  "author": "Engineering Team - Sri Meenakshi Agro & Traditional Foods",
+  "license": "UNLICENSED"
+}

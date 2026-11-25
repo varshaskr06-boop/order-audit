@@ -1,0 +1,55 @@
+services:
+  # ----------------------------------------------------------------------------
+  # Backend API Web Service
+  # ----------------------------------------------------------------------------
+  - type: web
+    name: sri-meenakshi-erp-backend
+    env: node
+    rootDir: backend
+    plan: starter
+    region: singapore # Closest low-latency region to Tamil Nadu / South India
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      - key: CORS_ORIGIN
+        value: https://sri-meenakshi-erp.vercel.app
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRES_IN
+        value: 24h
+      - key: DB_HOST
+        sync: false
+      - key: DB_PORT
+        value: 5432
+      - key: DB_NAME
+        value: food_mfg_db
+      - key: DB_USER
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_SSL
+        value: "true"
+
+  # ----------------------------------------------------------------------------
+  # Frontend SPA Static Site (Optional alternative to Vercel)
+  # ----------------------------------------------------------------------------
+  - type: web
+    name: sri-meenakshi-erp-frontend
+    env: static
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_BASE_URL
+        fromService:
+          type: web
+          name: sri-meenakshi-erp-backend
+          property: host
